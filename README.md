@@ -1,6 +1,6 @@
 # W3C Linked Web Storage Protocol Test Suite
 
-> Official conformance test suite for the [W3C Linked Web Storage (LWS) Protocol](https://github.com/w3c/lws-protocol)
+> Unofficial conformance test suite for the [W3C Linked Web Storage (LWS) Protocol](https://github.com/w3c/lws-protocol)
 
 [![License](https://img.shields.io/badge/License-W3C-blue.svg)](https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document)
 [![Tests](https://img.shields.io/badge/tests-27%20passing-brightgreen.svg)](./reports/)
