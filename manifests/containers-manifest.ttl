@@ -1,0 +1,51 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Container Tests" ;
+  rdfs:comment "Tests for container operations and JSON-LD format" ;
+  mf:entries (
+    <#test-container-jsonld>
+    <#test-container-context>
+    <#test-container-contains>
+    <#test-container-trailing-slash>
+  ) .
+
+<#test-container-jsonld>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Container JSON-LD format" ;
+  rdfs:comment "Server MUST return containers as JSON-LD" ;
+  lws:specSection "6.1.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Containers" ;
+  lws:testImplementation "tests/containers/listing.test.js#testContainerJsonld" .
+
+<#test-container-context>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Container @context" ;
+  rdfs:comment "Server MUST include proper @context in container listings" ;
+  lws:specSection "6.1.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Containers" ;
+  lws:testImplementation "tests/containers/listing.test.js#testContainerContext" .
+
+<#test-container-contains>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Container contains array" ;
+  rdfs:comment "Server MUST include contains array with child resources" ;
+  lws:specSection "6.1.3" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Containers" ;
+  lws:testImplementation "tests/containers/listing.test.js#testContainerContains" .
+
+<#test-container-trailing-slash>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Container trailing slash" ;
+  rdfs:comment "Server MUST handle container URIs with trailing slash" ;
+  lws:specSection "6.1.4" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Containers" ;
+  lws:testImplementation "tests/containers/listing.test.js#testContainerTrailingSlash" .

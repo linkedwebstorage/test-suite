@@ -1,0 +1,19 @@
+@prefix earl: <http://www.w3.org/ns/earl#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<#lws-server>
+  rdf:type earl:TestSubject, doap:Project ;
+  doap:name "lws-server" ;
+  doap:description "Minimal LWS reference implementation" ;
+  doap:homepage <https://github.com/linkedwebstorage/lws-server> ;
+  doap:programming-language "JavaScript" ;
+  lws:testConfig "lws-server.config.json" .
+
+<#jss>
+  rdf:type earl:TestSubject, doap:Project ;
+  doap:name "JavaScriptSolidServer" ;
+  doap:description "Full-featured LDP/LWS/Solid server" ;
+  doap:homepage <https://github.com/JavaScriptSolidServer/JavaScriptSolidServer> ;
+  doap:programming-language "JavaScript" ;
+  lws:testConfig "jss.config.json" .

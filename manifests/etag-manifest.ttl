@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "ETag and Concurrency Control Tests" ;
+  rdfs:comment "Tests for ETags and conditional headers" ;
+  mf:entries (
+    <#test-etag-generation>
+    <#test-if-match-success>
+    <#test-if-match-fail>
+    <#test-if-none-match-create>
+    <#test-if-none-match-prevent>
+  ) .
+
+<#test-etag-generation>
+  rdf:type lws:ProtocolTest ;
+  mf:name "ETag generation" ;
+  rdfs:comment "Server MUST generate ETags for resources" ;
+  lws:specSection "5.1.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "ETags" ;
+  lws:testImplementation "tests/etag/if-match.test.js#testEtagGeneration" .
+
+<#test-if-match-success>
+  rdf:type lws:ProtocolTest ;
+  mf:name "If-Match successful update" ;
+  rdfs:comment "Server MUST update when ETag matches" ;
+  lws:specSection "5.2.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "ETags" ;
+  lws:testImplementation "tests/etag/if-match.test.js#testIfMatchSuccess" .
+
+<#test-if-match-fail>
+  rdf:type lws:ProtocolTest ;
+  mf:name "If-Match failed update" ;
+  rdfs:comment "Server MUST return 412 when ETag doesn't match" ;
+  lws:specSection "5.2.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "ETags" ;
+  lws:testImplementation "tests/etag/if-match.test.js#testIfMatchFail" .
+
+<#test-if-none-match-create>
+  rdf:type lws:ProtocolTest ;
+  mf:name "If-None-Match create" ;
+  rdfs:comment "Server MUST create resource when If-None-Match: *" ;
+  lws:specSection "5.3.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "ETags" ;
+  lws:testImplementation "tests/etag/if-none-match.test.js#testIfNoneMatchCreate" .
+
+<#test-if-none-match-prevent>
+  rdf:type lws:ProtocolTest ;
+  mf:name "If-None-Match prevent overwrite" ;
+  rdfs:comment "Server MUST return 412 when resource exists" ;
+  lws:specSection "5.3.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "ETags" ;
+  lws:testImplementation "tests/etag/if-none-match.test.js#testIfNoneMatchPrevent" .

@@ -1,0 +1,131 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "HTTP Methods Tests" ;
+  rdfs:comment "Tests for GET, PUT, POST, DELETE, HEAD, OPTIONS methods" ;
+  mf:entries (
+    <#test-get-resource>
+    <#test-get-404>
+    <#test-get-container>
+    <#test-put-create>
+    <#test-put-update>
+    <#test-put-if-none-match>
+    <#test-post-slug>
+    <#test-post-container>
+    <#test-delete-resource>
+    <#test-delete-404>
+    <#test-head-resource>
+    <#test-options-resource>
+  ) .
+
+<#test-get-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "GET existing resource" ;
+  rdfs:comment "Server MUST return 200 for existing resources" ;
+  lws:specSection "4.1.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/get.test.js#testGetResource" .
+
+<#test-get-404>
+  rdf:type lws:ProtocolTest ;
+  mf:name "GET non-existent resource" ;
+  rdfs:comment "Server MUST return 404 for non-existent resources" ;
+  lws:specSection "4.1.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/get.test.js#testGet404" .
+
+<#test-get-container>
+  rdf:type lws:ProtocolTest ;
+  mf:name "GET container listing" ;
+  rdfs:comment "Server MUST return container contents" ;
+  lws:specSection "4.1.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/get.test.js#testGetContainer" .
+
+<#test-put-create>
+  rdf:type lws:ProtocolTest ;
+  mf:name "PUT create resource" ;
+  rdfs:comment "Server MUST return 201 when creating new resource" ;
+  lws:specSection "4.2.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/put.test.js#testPutCreate" .
+
+<#test-put-update>
+  rdf:type lws:ProtocolTest ;
+  mf:name "PUT update resource" ;
+  rdfs:comment "Server MUST return 204 when updating existing resource" ;
+  lws:specSection "4.2.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/put.test.js#testPutUpdate" .
+
+<#test-put-if-none-match>
+  rdf:type lws:ProtocolTest ;
+  mf:name "PUT with If-None-Match" ;
+  rdfs:comment "Server MUST respect If-None-Match: * header" ;
+  lws:specSection "4.2.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/put.test.js#testPutIfNoneMatch" .
+
+<#test-post-slug>
+  rdf:type lws:ProtocolTest ;
+  mf:name "POST with Slug header" ;
+  rdfs:comment "Server MUST create resource with Slug hint" ;
+  lws:specSection "4.3.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/post.test.js#testPostSlug" .
+
+<#test-post-container>
+  rdf:type lws:ProtocolTest ;
+  mf:name "POST create container" ;
+  rdfs:comment "Server MUST create container with Link header" ;
+  lws:specSection "4.3.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/post.test.js#testPostContainer" .
+
+<#test-delete-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "DELETE resource" ;
+  rdfs:comment "Server MUST return 204 when deleting resource" ;
+  lws:specSection "4.4.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/delete.test.js#testDeleteResource" .
+
+<#test-delete-404>
+  rdf:type lws:ProtocolTest ;
+  mf:name "DELETE non-existent resource" ;
+  rdfs:comment "Server MUST return 404 for non-existent resource" ;
+  lws:specSection "4.4.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/delete.test.js#testDelete404" .
+
+<#test-head-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "HEAD resource" ;
+  rdfs:comment "Server MUST return metadata without body" ;
+  lws:specSection "4.5.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/head.test.js#testHeadResource" .
+
+<#test-options-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "OPTIONS CORS" ;
+  rdfs:comment "Server MUST return CORS headers" ;
+  lws:specSection "4.6.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "HTTP Methods" ;
+  lws:testImplementation "tests/http-methods/options.test.js#testOptionsResource" .

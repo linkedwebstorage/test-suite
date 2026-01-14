@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Headers Tests" ;
+  rdfs:comment "Tests for Link headers, CORS, and other HTTP headers" ;
+  mf:entries (
+    <#test-link-resource>
+    <#test-link-container>
+    <#test-location-header>
+    <#test-cors-allow-origin>
+    <#test-cors-allow-methods>
+    <#test-allow-header>
+  ) .
+
+<#test-link-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Link header for resource" ;
+  rdfs:comment "Server MUST include ldp#Resource in Link header" ;
+  lws:specSection "7.1.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/link-headers.test.js#testLinkResource" .
+
+<#test-link-container>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Link header for container" ;
+  rdfs:comment "Server MUST include ldp#Container in Link header" ;
+  lws:specSection "7.1.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/link-headers.test.js#testLinkContainer" .
+
+<#test-location-header>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Location header on 201" ;
+  rdfs:comment "Server MUST include Location header on 201 Created" ;
+  lws:specSection "7.2.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/link-headers.test.js#testLocationHeader" .
+
+<#test-cors-allow-origin>
+  rdf:type lws:ProtocolTest ;
+  mf:name "CORS Allow-Origin header" ;
+  rdfs:comment "Server MUST include Access-Control-Allow-Origin header" ;
+  lws:specSection "7.3.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/cors.test.js#testCorsAllowOrigin" .
+
+<#test-cors-allow-methods>
+  rdf:type lws:ProtocolTest ;
+  mf:name "CORS Allow-Methods header" ;
+  rdfs:comment "Server MUST include Access-Control-Allow-Methods header" ;
+  lws:specSection "7.3.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/cors.test.js#testCorsAllowMethods" .
+
+<#test-allow-header>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Allow header" ;
+  rdfs:comment "Server MUST include Allow header with supported methods" ;
+  lws:specSection "7.4.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "Headers" ;
+  lws:testImplementation "tests/headers/cors.test.js#testAllowHeader" .

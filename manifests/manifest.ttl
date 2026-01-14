@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "LWS Protocol Test Suite" ;
+  rdfs:comment "W3C Linked Web Storage Protocol conformance tests - MVP (Core MUST tests)" ;
+  dc:creator "W3C LWS Working Group" ;
+  dc:issued "2026-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
+  dc:rights "W3C Software License" ;
+  mf:include (
+    <http-methods-manifest.ttl>
+    <etag-manifest.ttl>
+    <containers-manifest.ttl>
+    <headers-manifest.ttl>
+  ) .

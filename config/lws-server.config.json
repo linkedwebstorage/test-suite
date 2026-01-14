@@ -1,0 +1,27 @@
+{
+  "name": "lws-server",
+  "version": "0.0.2",
+  "homepage": "https://github.com/linkedwebstorage/lws-server",
+  "type": "managed",
+  "server": {
+    "command": "npx",
+    "args": ["lws-server", "--port", "3126", "--root", "./test-data", "--quiet"],
+    "env": {},
+    "startupTimeout": 5000,
+    "healthCheck": {
+      "url": "http://localhost:3126/",
+      "expectedStatus": 200
+    }
+  },
+  "baseUrl": "http://localhost:3126",
+  "authentication": null,
+  "features": {
+    "authentication": false,
+    "authorization": false,
+    "notifications": false,
+    "sparql": false
+  },
+  "cleanup": {
+    "dataDirectory": "./test-data"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "JavaScriptSolidServer",
+  "version": "0.0.77",
+  "homepage": "https://github.com/JavaScriptSolidServer/JavaScriptSolidServer",
+  "type": "managed",
+  "server": {
+    "command": "node",
+    "args": ["/home/melvin/remote/github.com/JavaScriptSolidServer/JavaScriptSolidServer/bin/server.js", "--lws-mode", "--port", "3127", "--root", "./test-data-jss"],
+    "env": {},
+    "startupTimeout": 10000,
+    "healthCheck": {
+      "url": "http://localhost:3127/",
+      "expectedStatus": 200
+    }
+  },
+  "baseUrl": "http://localhost:3127",
+  "authentication": null,
+  "features": {
+    "authentication": false,
+    "authorization": false,
+    "notifications": false,
+    "sparql": false
+  },
+  "cleanup": {
+    "dataDirectory": "./test-data-jss"
+  }
+}
