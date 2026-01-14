@@ -73,14 +73,14 @@ open reports/html/lws-server.html
 ### Global Installation
 
 ```bash
-npm install -g @linkedwebstorage/test-suite
+npm install -g lws-test-suite
 lws-test --subject lws-server
 ```
 
 ### Local Installation
 
 ```bash
-npm install @linkedwebstorage/test-suite
+npm install lws-test-suite
 npx lws-test --subject lws-server
 ```
 
