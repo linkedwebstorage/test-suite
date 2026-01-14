@@ -1,5 +1,5 @@
 {
-  "name": "@linkedwebstorage/test-suite",
+  "name": "lws-test-suite",
   "version": "0.0.1",
   "description": "W3C Linked Web Storage Protocol conformance test suite",
   "type": "module",

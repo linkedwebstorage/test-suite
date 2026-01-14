@@ -1,0 +1,7 @@
+data/
+test-data/
+test-data-jss/
+reports/
+*.log
+.DS_Store
+.env
