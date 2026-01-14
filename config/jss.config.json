@@ -5,12 +5,14 @@
   "type": "managed",
   "server": {
     "command": "node",
-    "args": ["/home/melvin/remote/github.com/JavaScriptSolidServer/JavaScriptSolidServer/bin/server.js", "--lws-mode", "--port", "3127", "--root", "./test-data-jss"],
-    "env": {},
-    "startupTimeout": 10000,
+    "args": ["/home/melvin/remote/github.com/JavaScriptSolidServer/JavaScriptSolidServer/bin/jss.js", "start", "--lws-mode", "--port", "3127", "--root", "./test-data-jss", "--no-multiuser"],
+    "env": {
+      "TOKEN_SECRET": "test-secret-for-testing-only"
+    },
+    "startupTimeout": 15000,
     "healthCheck": {
       "url": "http://localhost:3127/",
-      "expectedStatus": 200
+      "expectedStatus": 401
     }
   },
   "baseUrl": "http://localhost:3127",
