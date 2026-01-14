@@ -345,10 +345,12 @@ Tests are declared in RDF Turtle manifests:
 
 ## Tested Implementations
 
-| Implementation | Version | Pass Rate | Report |
-|----------------|---------|-----------|--------|
-| [lws-server](https://github.com/linkedwebstorage/lws-server) | 0.0.2 | 100% (27/27) | [View](./reports/html/lws-server.html) |
-| [JavaScriptSolidServer](https://github.com/JavaScriptSolidServer/JavaScriptSolidServer) | 0.0.77 | TBD | Pending |
+| Implementation | Version | Pass Rate | Report | Notes |
+|----------------|---------|-----------|--------|-------|
+| [lws-server](https://github.com/linkedwebstorage/lws-server) | 0.0.2 | 100% (27/27) | [View](./reports/html/lws-server.html) | Full compliance |
+| [JavaScriptSolidServer](https://github.com/JavaScriptSolidServer/JavaScriptSolidServer) | 0.0.77 | 14.8% (4/27) | [View](./reports/html/jss.html) | Requires authentication* |
+
+**Authentication Note**: JavaScriptSolidServer requires authentication for all resource operations, even in `--lws-mode`. The test suite currently tests unauthenticated LWS protocol compliance. Only CORS/OPTIONS tests (4/27) pass without authentication. Future versions may add authentication support for testing authenticated LWS implementations.
 
 ## Contributing
 
