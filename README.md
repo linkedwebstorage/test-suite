@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/badge/License-W3C-blue.svg)](https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document)
 [![Tests](https://img.shields.io/badge/tests-27%20passing-brightgreen.svg)](./reports/)
 [![Coverage](https://img.shields.io/badge/spec%20coverage-MUST%20level-brightgreen.svg)](./manifests/)
+[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/linkedwebstorage/test-suite)
 
 ## Overview
 
