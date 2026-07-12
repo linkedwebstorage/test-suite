@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Webhook Notifications" ;
+  rdfs:comment "lws10-notifications subscriptions, envelopes, and RFC 9421 signatures" ;
+  mf:entries (
+    <#notification-service>
+    <#subscription-lifecycle>
+    <#webhook-signature>
+  ) .
+
+<#notification-service>
+  rdf:type lws:ProtocolTest ;
+  mf:name "NotificationService advertised" ;
+  rdfs:comment "NotificationService is advertised in the storage description" ;
+  lws:specSection "4" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "notifications" ;
+  lws:testImplementation "tests/notifications.test.js#notificationServiceAdvertised" .
+
+<#subscription-lifecycle>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Subscription create/get/delete" ;
+  rdfs:comment "A webhook subscription can be created, read, and deleted" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "notifications" ;
+  lws:testImplementation "tests/notifications.test.js#subscriptionLifecycle" .
+
+<#webhook-signature>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Signed webhook delivery" ;
+  rdfs:comment "A change delivers an AS2 envelope signed per RFC 9421, verifiable against the published key" ;
+  lws:specSection "7" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "notifications" ;
+  lws:testImplementation "tests/notifications.test.js#webhookDeliveryAndSignature" .

@@ -1,18 +1,21 @@
 {
   "name": "lws-test-suite",
-  "version": "0.0.2",
-  "description": "W3C Linked Web Storage Protocol conformance test suite",
+  "version": "0.1.0",
+  "description": "W3C Linked Web Storage Protocol conformance test suite — current editors drafts (core, searchindex, notifications, authn, authz)",
   "type": "module",
   "main": "lib/runner.js",
   "bin": {
     "lws-test": "./bin/lws-test.js"
   },
   "scripts": {
-    "test": "node bin/lws-test.js",
-    "test:lws-server": "node bin/lws-test.js --subject lws-server",
+    "test": "node bin/lws-test.js --subject lwsd",
+    "test:lwsd": "node bin/lws-test.js --subject lwsd",
+    "test:authn": "node bin/lws-test.js --subject lwsd-authn",
+    "test:authz": "node bin/lws-test.js --subject lwsd-authz",
+    "test:all": "node bin/lws-test.js --subject lwsd && node bin/lws-test.js --subject lwsd-authn && node bin/lws-test.js --subject lwsd-authz",
     "test:jss": "node bin/lws-test.js --subject jss",
-    "test:must": "node bin/lws-test.js --level MUST",
-    "report": "node lib/report-viewer.js"
+    "test:must": "node bin/lws-test.js --subject lwsd --level MUST",
+    "manifests": "node tests/manifest-data.js"
   },
   "keywords": [
     "lws",

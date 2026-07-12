@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Metadata and Discovery" ;
+  rdfs:comment "lws10-core linkset resources (RFC 9264) and storage description discovery" ;
+  mf:entries (
+    <#linkset-discoverable>
+    <#linkset-shape>
+    <#linkset-patch-advertised>
+    <#linkset-merge-patch>
+    <#server-managed-protected>
+    <#storage-description>
+  ) .
+
+<#linkset-discoverable>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Linkset discoverable via rel=linkset" ;
+  rdfs:comment "Each resource advertises its linkset via a Link rel=\"linkset\"" ;
+  lws:specSection "8.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#linksetDiscoverable" .
+
+<#linkset-shape>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Linkset is application/linkset+json" ;
+  rdfs:comment "The linkset resource is RFC 9264 application/linkset+json with an anchor" ;
+  lws:specSection "8.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#linksetShape" .
+
+<#linkset-patch-advertised>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Linkset advertises merge-patch" ;
+  rdfs:comment "The linkset advertises PATCH via Allow and Accept-Patch" ;
+  lws:specSection "8.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#linksetPatchAdvertised" .
+
+<#linkset-merge-patch>
+  rdf:type lws:ProtocolTest ;
+  mf:name "User-managed linkset PATCH" ;
+  rdfs:comment "A merge-patch adds a user-managed link" ;
+  lws:specSection "8.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#linksetMergePatch" .
+
+<#server-managed-protected>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Server-managed links protected" ;
+  rdfs:comment "Patching a server-managed relation is rejected" ;
+  lws:specSection "8.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#serverManagedLinkProtected" .
+
+<#storage-description>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Storage description discoverable" ;
+  rdfs:comment "The storage description is discoverable via Link and lists a StorageDescription service" ;
+  lws:specSection "5" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "metadata" ;
+  lws:testImplementation "tests/metadata.test.js#storageDescriptionDiscoverable" .

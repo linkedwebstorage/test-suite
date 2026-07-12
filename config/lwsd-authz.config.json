@@ -1,0 +1,42 @@
+{
+  "name": "lwsd-authz",
+  "version": "0.0.3",
+  "homepage": "https://github.com/linkedwebstorage/lwsd",
+  "type": "managed",
+  "server": {
+    "command": "node",
+    "args": [
+      "../lwsd/index.js",
+      "--port",
+      "3132",
+      "--root",
+      "./test-data-authz",
+      "--prefix",
+      "/lws"
+    ],
+    "env": {
+      "LWS_PUBLIC_READ": "0",
+      "LWS_WRITERS": "did:key:z6MkgNoBLzX9N4qYo1FVi5zY1m2Sd8nRQpNmpPZbxn91RuGz"
+    },
+    "startupTimeout": 15000,
+    "healthCheck": {
+      "url": "http://localhost:3132/lws/",
+      "expectedStatus": 401
+    }
+  },
+  "baseUrl": "http://localhost:3132/lws",
+  "authentication": null,
+  "features": {
+    "core": false,
+    "containers": false,
+    "metadata": false,
+    "media-type": false,
+    "searchindex": false,
+    "notifications": false,
+    "authn": false,
+    "authz": true
+  },
+  "cleanup": {
+    "dataDirectory": "./test-data-authz"
+  }
+}

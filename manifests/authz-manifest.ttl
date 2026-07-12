@@ -1,0 +1,111 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Authorization (ODRL access grants)" ;
+  rdfs:comment "lws-access-requests ODRL Access Profile" ;
+  mf:entries (
+    <#admin-can-write>
+    <#anon-read-refused>
+    <#ungranted-forbidden>
+    <#read-grant-allows>
+    <#read-grant-denies-write>
+    <#public-grant-anon>
+    <#expired-datetime>
+    <#open-datetime>
+    <#create-grant>
+    <#search-filtered>
+  ) .
+
+<#admin-can-write>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Admin can write" ;
+  rdfs:comment "An allowlisted controller can create resources" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#adminCanWrite" .
+
+<#anon-read-refused>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Anonymous read refused" ;
+  rdfs:comment "With reads gated, an anonymous read returns 401" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#anonReadRefused" .
+
+<#ungranted-forbidden>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Ungranted agent forbidden" ;
+  rdfs:comment "An authenticated agent without a grant is forbidden" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#ungrantedAgentForbidden" .
+
+<#read-grant-allows>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Read grant allows read" ;
+  rdfs:comment "A read grant permits the assignee to read" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#readGrantAllows" .
+
+<#read-grant-denies-write>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Read grant denies write" ;
+  rdfs:comment "A read-only grant does not permit writes" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#readGrantDeniesWrite" .
+
+<#public-grant-anon>
+  rdf:type lws:ProtocolTest ;
+  mf:name "foaf:Agent grant allows anon" ;
+  rdfs:comment "A grant to foaf:Agent permits anonymous reads" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#publicGrantAllowsAnon" .
+
+<#expired-datetime>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Expired dateTime constraint denies" ;
+  rdfs:comment "A grant whose dateTime window has closed denies access" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#expiredDateTimeConstraintDenies" .
+
+<#open-datetime>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Open dateTime constraint allows" ;
+  rdfs:comment "A grant whose dateTime window is open permits access" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#openDateTimeConstraintAllows" .
+
+<#create-grant>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Create grant allows POST" ;
+  rdfs:comment "A create grant permits POST into a container" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#createGrantAllowsPost" .
+
+<#search-filtered>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Search authorization filtering" ;
+  rdfs:comment "Type search results are limited to what the client may read" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authz" ;
+  lws:testImplementation "tests/authz.test.js#searchAuthorizationFiltered" .

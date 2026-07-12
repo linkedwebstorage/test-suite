@@ -12,8 +12,8 @@ const program = new Command();
 program
   .name('lws-test')
   .description('W3C Linked Web Storage Protocol Conformance Test Suite')
-  .version('0.0.1')
-  .option('--subject <name>', 'Test subject (lws-server, jss)', 'lws-server')
+  .version('0.1.0')
+  .option('--subject <name>', 'Test subject config name', 'lwsd')
   .option('--config <path>', 'Custom config file path')
   .option('--level <level>', 'Conformance level filter (MUST, SHOULD, MAY)')
   .option('--report <format>', 'Report format (earl, html, json, all)', 'all')

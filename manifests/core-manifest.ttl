@@ -1,0 +1,161 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Core CRUD Operations" ;
+  rdfs:comment "lws10-core create/read/update/delete, conditional requests, content PATCH, ranges, errors" ;
+  mf:entries (
+    <#post-creates-data-resource>
+    <#post-missing-container-404>
+    <#get-content-etag>
+    <#head-matches-get>
+    <#conditional-get-304>
+    <#range-request-206>
+    <#unconditional-put-428>
+    <#stale-if-match-412>
+    <#valid-if-match-updates>
+    <#put-missing-404>
+    <#content-merge-patch>
+    <#merge-patch-non-json-415>
+    <#delete-nonempty-409>
+    <#recursive-delete>
+    <#errors-problem-json>
+  ) .
+
+<#post-creates-data-resource>
+  rdf:type lws:ProtocolTest ;
+  mf:name "POST creates a data resource" ;
+  rdfs:comment "POST to a container creates a data resource with 201 + Location + server-managed Link headers" ;
+  lws:specSection "9.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#postCreatesDataResource" .
+
+<#post-missing-container-404>
+  rdf:type lws:ProtocolTest ;
+  mf:name "POST to a missing container" ;
+  rdfs:comment "POST to a non-existent container returns 404" ;
+  lws:specSection "9.2" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#postToMissingContainer404" .
+
+<#get-content-etag>
+  rdf:type lws:ProtocolTest ;
+  mf:name "GET returns content and ETag" ;
+  rdfs:comment "GET returns the resource content, Content-Type, and an ETag" ;
+  lws:specSection "9.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#getReturnsContentAndEtag" .
+
+<#head-matches-get>
+  rdf:type lws:ProtocolTest ;
+  mf:name "HEAD returns headers without a body" ;
+  rdfs:comment "HEAD returns the same headers as GET with no body" ;
+  lws:specSection "9.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#headMatchesGet" .
+
+<#conditional-get-304>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Conditional GET returns 304" ;
+  rdfs:comment "If-None-Match with the current ETag returns 304" ;
+  lws:specSection "9.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#conditionalGet304" .
+
+<#range-request-206>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Range request returns 206" ;
+  rdfs:comment "A byte-range request returns 206 with Content-Range" ;
+  lws:specSection "9.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#rangeRequest206" .
+
+<#unconditional-put-428>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Unconditional PUT rejected with 428" ;
+  rdfs:comment "An ETag-supporting server rejects an unconditional PUT with 428" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#unconditionalPut428" .
+
+<#stale-if-match-412>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Stale If-Match rejected with 412" ;
+  rdfs:comment "PUT with a non-matching If-Match returns 412" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#staleIfMatch412" .
+
+<#valid-if-match-updates>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Valid If-Match updates the resource" ;
+  rdfs:comment "PUT with a matching If-Match returns 204 and a new ETag" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#validIfMatchUpdates" .
+
+<#put-missing-404>
+  rdf:type lws:ProtocolTest ;
+  mf:name "PUT to a missing resource returns 404" ;
+  rdfs:comment "PUT is update-only; a missing target returns 404" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#putToMissing404" .
+
+<#content-merge-patch>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Content PATCH via merge-patch" ;
+  rdfs:comment "PATCH with application/merge-patch+json updates a JSON resource" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#contentMergePatch" .
+
+<#merge-patch-non-json-415>
+  rdf:type lws:ProtocolTest ;
+  mf:name "merge-patch on non-JSON returns 415" ;
+  rdfs:comment "merge-patch on a non-JSON resource returns 415" ;
+  lws:specSection "9.3" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#mergePatchNonJson415" .
+
+<#delete-nonempty-409>
+  rdf:type lws:ProtocolTest ;
+  mf:name "DELETE non-empty container returns 409" ;
+  rdfs:comment "DELETE of a non-empty container without recursion returns 409" ;
+  lws:specSection "9.4" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#deleteNonEmptyContainer409" .
+
+<#recursive-delete>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Recursive delete with Depth: infinity" ;
+  rdfs:comment "DELETE with Depth: infinity removes the container subtree" ;
+  lws:specSection "9.4" ;
+  lws:conformanceLevel "MAY" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#recursiveDelete" .
+
+<#errors-problem-json>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Errors use problem+json" ;
+  rdfs:comment "Error responses use RFC 9457 application/problem+json" ;
+  lws:specSection "9" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "core" ;
+  lws:testImplementation "tests/core.test.js#errorsUseProblemJson" .

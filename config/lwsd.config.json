@@ -1,0 +1,36 @@
+{
+  "name": "lwsd",
+  "version": "0.0.3",
+  "homepage": "https://github.com/linkedwebstorage/lwsd",
+  "type": "managed",
+  "server": {
+    "command": "node",
+    "args": ["../lwsd/index.js", "--port", "3130", "--root", "./test-data-lwsd", "--no-auth", "--prefix", "/lws"],
+    "env": {
+      "LWS_ANON_WRITES": "1",
+      "LWS_PAGE_SIZE": "5"
+    },
+    "startupTimeout": 15000,
+    "healthCheck": {
+      "url": "http://localhost:3130/lws/",
+      "expectedStatus": 200
+    }
+  },
+  "baseUrl": "http://localhost:3130/lws",
+  "authentication": null,
+  "features": {
+    "core": true,
+    "containers": true,
+    "metadata": true,
+    "media-type": true,
+    "discovery": true,
+    "errors": true,
+    "searchindex": true,
+    "notifications": true,
+    "authz": false,
+    "authn": false
+  },
+  "cleanup": {
+    "dataDirectory": "./test-data-lwsd"
+  }
+}

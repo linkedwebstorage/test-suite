@@ -1,0 +1,111 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Type Index and Type Search" ;
+  rdfs:comment "lws10-searchindex TypeIndexService and TypeSearchService" ;
+  mf:entries (
+    <#type-index-advertised>
+    <#type-index-lists>
+    <#type-search-single>
+    <#type-search-native>
+    <#type-search-post-cnf>
+    <#type-search-no-match>
+    <#type-search-invalid-uri>
+    <#type-search-wrong-media>
+    <#type-search-malformed>
+    <#type-index-drops-deleted>
+  ) .
+
+<#type-index-advertised>
+  rdf:type lws:ProtocolTest ;
+  mf:name "TypeIndexService advertised" ;
+  rdfs:comment "TypeIndexService is advertised in the storage description" ;
+  lws:specSection "4" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeIndexAdvertised" .
+
+<#type-index-lists>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Type index lists declared types" ;
+  rdfs:comment "A type declared via a Link header appears in the type index" ;
+  lws:specSection "5" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeIndexLists" .
+
+<#type-search-single>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Type search by single type" ;
+  rdfs:comment "TypeSearch GET returns resources declaring the given type" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchSingleType" .
+
+<#type-search-native>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Native Container class filter" ;
+  rdfs:comment "Filtering on lws#Container matches container resources" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchNativeContainerClass" .
+
+<#type-search-post-cnf>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Type search POST CNF filter" ;
+  rdfs:comment "TypeSearch POST supports the conjunctive-normal-form filter" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchPostCnf" .
+
+<#type-search-no-match>
+  rdf:type lws:ProtocolTest ;
+  mf:name "No match yields empty result" ;
+  rdfs:comment "A well-formed no-match query returns 200 with empty items" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchNoMatchEmpty" .
+
+<#type-search-invalid-uri>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Invalid URI value returns 400" ;
+  rdfs:comment "A non-absolute-URI filter value returns 400" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchInvalidUri400" .
+
+<#type-search-wrong-media>
+  rdf:type lws:ProtocolTest ;
+  mf:name "POST wrong media type returns 415" ;
+  rdfs:comment "A POST body of the wrong media type returns 415" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchWrongMediaType415" .
+
+<#type-search-malformed>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Malformed body returns 400" ;
+  rdfs:comment "A malformed type value returns 400" ;
+  lws:specSection "6" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeSearchMalformedBody400" .
+
+<#type-index-drops-deleted>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Deleted resource dropped" ;
+  rdfs:comment "A deleted resource is dropped from search results" ;
+  lws:specSection "5" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "searchindex" ;
+  lws:testImplementation "tests/searchindex.test.js#typeIndexDropsDeleted" .

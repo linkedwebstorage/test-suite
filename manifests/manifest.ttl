@@ -7,13 +7,15 @@
 <>
   rdf:type mf:Manifest ;
   rdfs:label "LWS Protocol Test Suite" ;
-  rdfs:comment "W3C Linked Web Storage Protocol conformance tests - MVP (Core MUST tests)" ;
+  rdfs:comment "W3C Linked Web Storage Protocol conformance tests — current editor's drafts (core, searchindex, notifications, authn, authz)" ;
   dc:creator "W3C LWS Working Group" ;
-  dc:issued "2026-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
-  dc:rights "W3C Software License" ;
   mf:include (
-    <http-methods-manifest.ttl>
-    <etag-manifest.ttl>
+    <core-manifest.ttl>
     <containers-manifest.ttl>
-    <headers-manifest.ttl>
+    <metadata-manifest.ttl>
+    <media-type-manifest.ttl>
+    <searchindex-manifest.ttl>
+    <notifications-manifest.ttl>
+    <authn-manifest.ttl>
+    <authz-manifest.ttl>
   ) .

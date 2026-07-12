@@ -5,47 +5,67 @@
 
 <>
   rdf:type mf:Manifest ;
-  rdfs:label "Container Tests" ;
-  rdfs:comment "Tests for container operations and JSON-LD format" ;
+  rdfs:label "Container Representation and Pagination" ;
+  rdfs:comment "lws10-core container model, membership, and pagination" ;
   mf:entries (
-    <#test-container-jsonld>
-    <#test-container-context>
-    <#test-container-contains>
-    <#test-container-trailing-slash>
+    <#container-representation>
+    <#item-description-fields>
+    <#containment-up-link>
+    <#empty-container-items>
+    <#pagination-links>
+    <#pagination-traversal>
   ) .
 
-<#test-container-jsonld>
+<#container-representation>
   rdf:type lws:ProtocolTest ;
-  mf:name "Container JSON-LD format" ;
-  rdfs:comment "Server MUST return containers as JSON-LD" ;
-  lws:specSection "6.1.1" ;
+  mf:name "Container representation shape" ;
+  rdfs:comment "A container GET returns @context/id/type/totalItems/items as application/lws+json" ;
+  lws:specSection "7" ;
   lws:conformanceLevel "MUST" ;
-  lws:category "Containers" ;
-  lws:testImplementation "tests/containers/listing.test.js#testContainerJsonld" .
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#containerRepresentation" .
 
-<#test-container-context>
+<#item-description-fields>
   rdf:type lws:ProtocolTest ;
-  mf:name "Container @context" ;
-  rdfs:comment "Server MUST include proper @context in container listings" ;
-  lws:specSection "6.1.2" ;
+  mf:name "Contained resource description fields" ;
+  rdfs:comment "Each item has id, type, mediaType (for DataResources), size, and modified" ;
+  lws:specSection "7" ;
   lws:conformanceLevel "MUST" ;
-  lws:category "Containers" ;
-  lws:testImplementation "tests/containers/listing.test.js#testContainerContext" .
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#itemDescriptionFields" .
 
-<#test-container-contains>
+<#containment-up-link>
   rdf:type lws:ProtocolTest ;
-  mf:name "Container contains array" ;
-  rdfs:comment "Server MUST include contains array with child resources" ;
-  lws:specSection "6.1.3" ;
+  mf:name "Containment expressed via rel=up" ;
+  rdfs:comment "Non-root resources carry a Link rel=\"up\" to their parent" ;
+  lws:specSection "7" ;
   lws:conformanceLevel "MUST" ;
-  lws:category "Containers" ;
-  lws:testImplementation "tests/containers/listing.test.js#testContainerContains" .
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#containmentUpLink" .
 
-<#test-container-trailing-slash>
+<#empty-container-items>
   rdf:type lws:ProtocolTest ;
-  mf:name "Container trailing slash" ;
-  rdfs:comment "Server MUST handle container URIs with trailing slash" ;
-  lws:specSection "6.1.4" ;
+  mf:name "Empty container has empty items" ;
+  rdfs:comment "An empty container has totalItems 0 and an empty items array" ;
+  lws:specSection "7" ;
   lws:conformanceLevel "MUST" ;
-  lws:category "Containers" ;
-  lws:testImplementation "tests/containers/listing.test.js#testContainerTrailingSlash" .
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#emptyContainerEmptyItems" .
+
+<#pagination-links>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Pagination Link relations" ;
+  rdfs:comment "A paginated container carries first/next Link headers; totalItems is the full count" ;
+  lws:specSection "6.2" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#paginationLinks" .
+
+<#pagination-traversal>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Pagination traversal is complete" ;
+  rdfs:comment "Following rel=\"next\" reassembles the full membership" ;
+  lws:specSection "6.2" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "containers" ;
+  lws:testImplementation "tests/containers.test.js#paginationTraversal" .

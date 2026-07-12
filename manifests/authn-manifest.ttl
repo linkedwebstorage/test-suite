@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "Authentication (self-issued did:key)" ;
+  rdfs:comment "lws10-authn-ssi-did-key credentials" ;
+  mf:entries (
+    <#anon-write-challenged>
+    <#valid-did-key>
+    <#expired-rejected>
+    <#tampered-rejected>
+    <#subject-mismatch>
+    <#unauthorized-agent>
+  ) .
+
+<#anon-write-challenged>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Anonymous write challenged" ;
+  rdfs:comment "An anonymous write returns 401 with a conforming WWW-Authenticate challenge" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#anonWriteChallenged" .
+
+<#valid-did-key>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Valid did:key JWT accepted" ;
+  rdfs:comment "A valid self-issued did:key JWT is accepted" ;
+  lws:specSection "Authentication" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#validDidKeyAccepted" .
+
+<#expired-rejected>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Expired credential rejected" ;
+  rdfs:comment "An expired JWT is rejected" ;
+  lws:specSection "Authentication" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#expiredRejected" .
+
+<#tampered-rejected>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Tampered credential rejected" ;
+  rdfs:comment "A JWT with a broken signature is rejected" ;
+  lws:specSection "Authentication" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#tamperedRejected" .
+
+<#subject-mismatch>
+  rdf:type lws:ProtocolTest ;
+  mf:name "sub/iss mismatch rejected" ;
+  rdfs:comment "A JWT whose sub != iss is rejected" ;
+  lws:specSection "Authentication" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#subjectMismatchRejected" .
+
+<#unauthorized-agent>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Unauthorized agent forbidden" ;
+  rdfs:comment "A valid but unlisted agent is forbidden (403)" ;
+  lws:specSection "Authorization" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "authn" ;
+  lws:testImplementation "tests/authn.test.js#unauthorizedAgentForbidden" .

@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix lws: <https://w3c.github.io/lws-protocol/test-vocab#> .
+
+<>
+  rdf:type mf:Manifest ;
+  rdfs:label "LWS Media Type and Content Negotiation" ;
+  rdfs:comment "lws10-core application/lws+json and conneg" ;
+  mf:entries (
+    <#lws-json-content-type>
+    <#ld-json-negotiation>
+    <#plain-json-negotiation>
+    <#ld-json-profile>
+    <#vary-accept>
+    <#identical-body>
+  ) .
+
+<#lws-json-content-type>
+  rdf:type lws:ProtocolTest ;
+  mf:name "application/lws+json response" ;
+  rdfs:comment "A container request for application/lws+json is served as such" ;
+  lws:specSection "6.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#lwsJsonContentType" .
+
+<#ld-json-negotiation>
+  rdf:type lws:ProtocolTest ;
+  mf:name "application/ld+json negotiation" ;
+  rdfs:comment "A request for application/ld+json is served as such" ;
+  lws:specSection "6.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#ldJsonNegotiation" .
+
+<#plain-json-negotiation>
+  rdf:type lws:ProtocolTest ;
+  mf:name "application/json negotiation" ;
+  rdfs:comment "A request for application/json is served as such" ;
+  lws:specSection "6.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#plainJsonNegotiation" .
+
+<#ld-json-profile>
+  rdf:type lws:ProtocolTest ;
+  mf:name "ld+json;profile equivalence" ;
+  rdfs:comment "application/ld+json;profile is treated as application/lws+json" ;
+  lws:specSection "6.1" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#ldJsonProfileEquivalence" .
+
+<#vary-accept>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Vary: Accept advertised" ;
+  rdfs:comment "Container responses advertise Vary: Accept" ;
+  lws:specSection "7" ;
+  lws:conformanceLevel "SHOULD" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#varyAcceptHeader" .
+
+<#identical-body>
+  rdf:type lws:ProtocolTest ;
+  mf:name "Body identical across media types" ;
+  rdfs:comment "Only Content-Type varies across negotiated media types" ;
+  lws:specSection "6.1" ;
+  lws:conformanceLevel "MUST" ;
+  lws:category "media-type" ;
+  lws:testImplementation "tests/media-type.test.js#identicalBodyAcrossMediaTypes" .

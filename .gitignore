@@ -1,7 +1,4 @@
 node_modules/
+test-data*/
 reports/
-test-data/
 *.log
-.DS_Store
-.env
-package-lock.json
