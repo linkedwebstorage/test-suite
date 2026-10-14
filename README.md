@@ -1,3 +1,9 @@
+> **Superseded (14 October 2026).** This suite targeted the July 2026 drafts. LWS conformance is now
+> measured by [Touchstone](https://github.com/ebremer/touchstone) (203 tests over the October 2026
+> drafts; lwsd passes 196, 0 failed) and the LWS test group's own
+> [lws-test-suite](https://github.com/lws-contrib/lws-test-suite). lwsd's own checks live in
+> [lwsd/test](https://github.com/linkedwebstorage/lwsd/tree/gh-pages/test). This repository is archived.
+
 # W3C Linked Web Storage Protocol Test Suite
 
 > Unofficial conformance test suite for the [W3C Linked Web Storage (LWS) Protocol](https://github.com/w3c/lws-protocol)
